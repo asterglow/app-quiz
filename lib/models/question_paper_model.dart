@@ -31,7 +31,7 @@ class QuestionPaperModel {
     data['image_url'] = imageUrl;
     data['Description'] = description;
     data['time_seconds'] = timeSeconds;
-    
+
     return data;
   }
 }
@@ -59,9 +59,7 @@ class Questions {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['question'] = question;
-    if (this.answers != null) {
-      data['answers'] = answers.map((v) => v.toJson()).toList();
-    }
+    data['answers'] = answers.map((v) => v.toJson()).toList();
     data['correct_answer'] = correctAnswer;
     return data;
   }
