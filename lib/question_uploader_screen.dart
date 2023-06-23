@@ -1,4 +1,5 @@
 import 'package:app_flutter_quiz/controllers/questions_controller/question_uploader.dart';
+import 'package:app_flutter_quiz/firebase_ref/loading_status.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,12 +9,12 @@ class QuestionUploaderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          'Uploading Questions ...',
-        ),
-      ),
+          child: Obx(() => Text(
+              questionController.loadingstatus.value == LoadingStatus.completed
+                  ? "Finished Uploading"
+                  : "Uploading Questions..."))),
     );
   }
 }

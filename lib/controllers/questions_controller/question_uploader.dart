@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app_flutter_quiz/firebase_ref/firebase_references.dart';
+import 'package:app_flutter_quiz/firebase_ref/loading_status.dart';
 import 'package:app_flutter_quiz/models/question_paper_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +15,11 @@ class QuestionUploader extends GetxController {
     super.onReady();
   }
 
+  final loadingstatus = LoadingStatus.loading.obs; //make it obs
+
   Future<void> uploadQuestion() async {
+    loadingstatus.value = LoadingStatus.loading;  //value 0
+
     final fireStore = FirebaseFirestore.instance;
 
     final manifestContent = await DefaultAssetBundle.of(Get.context!)
@@ -63,5 +68,6 @@ class QuestionUploader extends GetxController {
     }
 
     await batch.commit();
+    loadingstatus.value = LoadingStatus.completed;
   }
 }
