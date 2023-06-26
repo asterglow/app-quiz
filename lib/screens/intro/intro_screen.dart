@@ -41,7 +41,7 @@ class IntroScreen extends StatelessWidget {
                 child: const Icon(
                   Icons.arrow_forward,
                   size: 35,
-                  color: Colors.blueAccent,
+                  // color: Colors.blueAccent,
                 ),
                 onTap: () {},
               ),
