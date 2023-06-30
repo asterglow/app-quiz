@@ -1,7 +1,6 @@
+import 'package:app_flutter_quiz/firebase_ref/firebase_references.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-
-Reference get firebaseStorage => FirebaseStorage.instance.ref();
 
 class FirebaseStorageService extends GetxService {
   Future<String?> getImage(String? imgName) async {
@@ -9,13 +8,19 @@ class FirebaseStorageService extends GetxService {
       return null;
     }
     try {
+      // print("test1");
       var urlRef = firebaseStorage
           .child("question_paper_images")
           .child('${imgName.toLowerCase()}.png');
+          
+          // print("test2");
 
-       var imgUrl =   await urlRef.getDownloadURL();
-       return imgUrl;
+          // print("urlRef is ${urlRef}");
+
+      var imgUrl = await urlRef.getDownloadURL();
+      return imgUrl;
     } catch (e) {
+      print(e);
       return null;
     }
   }

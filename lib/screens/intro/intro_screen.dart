@@ -38,12 +38,14 @@ class IntroScreen extends StatelessWidget {
                 height: 40,
               ),
               AppCircleButton(
+                onTap: () {
+                  Get.offAndToNamed("/home");
+                },
                 child: const Icon(
                   Icons.arrow_forward,
                   size: 35,
                   // color: Colors.blueAccent,
                 ),
-                onTap: () {},
               ),
             ],
           ),
