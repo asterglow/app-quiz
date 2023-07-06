@@ -45,7 +45,7 @@ class QuestionUploader extends GetxController {
         "title": paper.title,
         "image_link": paper.imageUrl,
         "description": paper.description,
-        "time_secconds": paper.timeSeconds,
+        "time_seconds": paper.timeSeconds,
         "questions_count":
             paper.questions == null ? 0 : paper.questions!.length,
       });

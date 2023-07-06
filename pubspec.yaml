@@ -40,6 +40,8 @@ dependencies:
   cloud_firestore: ^4.8.0
   google_fonts: ^4.0.4
   firebase_storage: ^11.2.3
+  cached_network_image: ^3.2.3
+  logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:

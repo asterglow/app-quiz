@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:app_flutter_quiz/firebase_ref/firebase_references.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
@@ -13,8 +15,9 @@ class FirebaseStorageService extends GetxService {
           .child("question_paper_images")
           .child('${imgName.toLowerCase()}.png');
       // print("test2");
-      // print("urlRef is ${urlRef}");
+      print("urlRef is $urlRef");
       var imgUrl = await urlRef.getDownloadURL();
+      print("imgUrl is $imgUrl");
       return imgUrl;
     } catch (e) {
       print(e);
