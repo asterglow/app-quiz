@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
+import '../../widgets/content_area.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     QuestionPaperController _questionPaperController = Get.find();
-    print("allPapers1 is ${_questionPaperController.allPapers}");
+    // print("allPapers1 is ${_questionPaperController.allPapers}");
     return Scaffold(
       // appBar: AppBar(
       //   title: const Text("Choose your Quiz"),
@@ -23,7 +25,8 @@ class HomeScreen extends StatelessWidget {
       // body:
       // Image.network('https://firebasestorage.googleapis.com/v0/b/app-flutter-quiz.appspot.com/o/question_paper_images%2Fbiology.png?alt=media&token=f2ca03aa-462a-4202-8002-fee42b5d38a2')
       // Obx(() => Image.network(_questionPaperController.allPaperImages[0])),
-      body: SafeArea(
+      body: ContentArea(
+        addPadding: false,
         child: Obx(
           () => ListView.separated(
             padding: UIParameters.screenPadding,

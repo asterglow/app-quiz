@@ -21,20 +21,20 @@ class QuestionPaperController extends GetxController {
 
     try {
       QuerySnapshot<Map<String, dynamic>> data = await questionPaperRF.get();
-      print("data.docs is ${data.docs}");
+      // print("data.docs is ${data.docs}");
       final List<QuestionPaperModel> paperList = data.docs
           .map((paper) => QuestionPaperModel.fromSnapshot(paper))
           .toList();
          
-          print(paperList[1]);
+          // print(paperList[1]);
       allPapers.assignAll(paperList);
-      print(allPapers); //papers from Firestore Snapshots to QPModel
+      // print(allPapers); //papers from Firestore Snapshots to QPModel
 
       for (var paper in paperList) {
-        print("paper.title is ${paper.title}");
+        // print("paper.title is ${paper.title}");
         final imgUrl =
             await Get.find<FirebaseStorageService>().getImage(paper.title);
-            print("QP imgurl is ${imgUrl}");
+            // print("QP imgurl is ${imgUrl}");
         
         // allPaperImages.add(imgUrl!);
         
