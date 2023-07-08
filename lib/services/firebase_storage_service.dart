@@ -20,7 +20,7 @@ class FirebaseStorageService extends GetxService {
       // print("imgUrl is $imgUrl");
       return imgUrl;
     } catch (e) {
-      print(e);
+      print("Firebase Storage issue: ${(e)}");
       return null;
     }
   }

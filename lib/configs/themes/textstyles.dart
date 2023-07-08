@@ -1,3 +1,4 @@
+import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
 import 'package:flutter/material.dart';
 
@@ -10,3 +11,8 @@ TextStyle quizTitleTextStyle(context) => TextStyle(
     );
 
 const detailTextStyle = TextStyle(fontSize: 12);
+const headerTextStyle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.w700,
+  color: onSurfaceTextColor,
+);
