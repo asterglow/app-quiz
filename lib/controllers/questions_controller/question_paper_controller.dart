@@ -49,7 +49,7 @@ class QuestionPaperController extends GetxController {
       // print("test3");
       // print(allPaperImages);
     } catch (e) {
-      print(e.toString());
+      print("QP controller issue: ${(e)}");
     }
   }
 }

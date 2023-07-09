@@ -43,6 +43,8 @@ dependencies:
   cached_network_image: ^3.2.3
   logger: ^1.4.0
   flutter_zoom_drawer: ^3.1.1
+  firebase_auth: ^4.6.3
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:

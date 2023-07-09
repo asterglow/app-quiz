@@ -1,4 +1,5 @@
 import 'package:app_flutter_quiz/controllers/questions_controller/question_paper_controller.dart';
+import 'package:app_flutter_quiz/controllers/zoom_drawer_controller.dart';
 import 'package:app_flutter_quiz/screens/home/home_screen.dart';
 import 'package:app_flutter_quiz/screens/intro/intro_screen.dart';
 import 'package:app_flutter_quiz/screens/splash/splash_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
             Get.put(QuestionPaperController());
             // Get.lazyPut(() => FirebaseStorageService());
             // Get.put(FirebaseStorageService());
+            Get.put(AppZoomDrawerController());
           }),
         ),
       ];
