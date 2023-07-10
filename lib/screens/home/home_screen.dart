@@ -33,7 +33,7 @@ class HomeScreen extends GetView<AppZoomDrawerController> {
             style: DrawerStyle.defaultStyle,
             menuBackgroundColor: Colors.white.withOpacity(0.5),
             slideWidth: MediaQuery.of(context).size.width*0.85,
-            menuScreen: HomeMenuScreen(),
+            menuScreen: const HomeMenuScreen(),
             mainScreen: Container(
               // color: Colors.blueAccent,
               decoration: BoxDecoration(gradient: mainGradient()),
