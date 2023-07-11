@@ -1,6 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:app_flutter_quiz/firebase_ref/firebase_references.dart';
+import 'package:app_flutter_quiz/screens/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:get/get.dart';
@@ -71,10 +72,15 @@ class AuthController extends GetxController {
       AppDialogs.quizStartDialog(
         onTap: () {
           Get.back();
+          navigateToLogin();
         },
       ),
       barrierDismissible: false,
     );
+  }
+
+  void navigateToLogin(){
+    Get.toNamed(LoginScreen.routeName); //static variable accessed
   }
 
   bool isLoggedIn(){

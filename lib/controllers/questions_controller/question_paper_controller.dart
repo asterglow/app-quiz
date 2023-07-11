@@ -57,18 +57,21 @@ class QuestionPaperController extends GetxController {
     }
   }
 
-  void navigateToQuiz({
-    required QuestionPaperModel paper,
-    bool tryAgain = false,
-  }) {
+  void navigateToQuiz(
+      {required QuestionPaperModel paper, bool tryAgain = false}) {
+
+    // ignore: no_leading_underscores_for_local_identifiers
     AuthController _authController = Get.find();
+
     if (_authController.isLoggedIn()) {
+
       if (tryAgain) {
         Get.back();
 // Get.offNamed(page);
       } else {
         // Get.toNamed(page);
       }
+
     } else {
       print("${paper.title} clicked - QP controller");
       _authController.showLoginAlertDialog();
