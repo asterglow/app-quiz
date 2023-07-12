@@ -1,6 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:app_flutter_quiz/firebase_ref/firebase_references.dart';
+import 'package:app_flutter_quiz/screens/home/home_screen.dart';
 import 'package:app_flutter_quiz/screens/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -49,10 +50,16 @@ class AuthController extends GetxController {
 
         await _auth.signInWithCredential(_googleCredential);
         await saveGoogleUser(googleAccount);
+        navigateToHome();
       }
     } on Exception catch (error) {
       AppLogger.e(error);
     }
+  }
+
+  User? getUser() {
+    _user.value = _auth.currentUser;
+    return _user.value;
   }
 
   saveGoogleUser(GoogleSignInAccount account) {
@@ -63,8 +70,22 @@ class AuthController extends GetxController {
     });
   }
 
+  Future<void> signOut() async {
+    AppLogger.d("Signed out - AuthContr");
+    try {
+      await _auth.signOut();
+      navigateToHome();
+    } on FirebaseAuthException catch (e) {
+      AppLogger.e(e);
+    }
+  }
+
   void navigateToIntro() {
     Get.offAllNamed("/intro");
+  }
+
+  void navigateToHome(){
+    Get.offAllNamed(HomeScreen.routeName);
   }
 
   void showLoginAlertDialog() {
@@ -79,11 +100,11 @@ class AuthController extends GetxController {
     );
   }
 
-  void navigateToLogin(){
+  void navigateToLogin() {
     Get.toNamed(LoginScreen.routeName); //static variable accessed
   }
 
-  bool isLoggedIn(){
+  bool isLoggedIn() {
     return _auth.currentUser != null;
   }
 }

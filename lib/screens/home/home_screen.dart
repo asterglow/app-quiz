@@ -18,6 +18,8 @@ import '../../widgets/icons.dart';
 class HomeScreen extends GetView<AppZoomDrawerController> {
   const HomeScreen({super.key});
 
+  static const String routeName = "/home";
+
   @override
   Widget build(BuildContext context) {
     QuestionPaperController _questionPaperController = Get.find();
