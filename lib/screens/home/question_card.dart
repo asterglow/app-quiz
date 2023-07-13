@@ -24,8 +24,12 @@ class QuestionCard extends GetView<QuestionPaperController> {
       ),
       child: InkWell(
         onTap: () {
+
           print("${model.title} clicked - Card");
-          controller.navigateToQuiz(paper: model);
+          controller.navigateToQuiz(
+            paper: model,
+            tryAgain: false,
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(_padding),
@@ -49,7 +53,7 @@ class QuestionCard extends GetView<QuestionPaperController> {
                         //     ? null
                         //     : Image.network(_questionPaperController
                         //         .allPapers[index].imageUrl!),
-      
+
                         child: model.imageUrl == null || model.imageUrl!.isEmpty
                             ? null
                             : CachedNetworkImage(
@@ -59,10 +63,11 @@ class QuestionCard extends GetView<QuestionPaperController> {
                                   child:
                                       const CircularProgressIndicator(), //add preloader image later
                                 ),
-                                errorWidget: (context, url, error) => Image.asset(
-                                    "assets/images/app_splash_logo.png"),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset(
+                                        "assets/images/app_splash_logo.png"),
                               ),
-      
+
                         // child: FadeInImage(
                         //   placeholder:
                         //       AssetImage("assets/images/app_splash_logo.png"),

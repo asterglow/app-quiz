@@ -3,6 +3,7 @@
 import 'package:app_flutter_quiz/controllers/auth_controller.dart';
 import 'package:app_flutter_quiz/firebase_ref/firebase_references.dart';
 import 'package:app_flutter_quiz/models/question_paper_model.dart';
+import 'package:app_flutter_quiz/screens/quiz/quiz_screen.dart';
 import 'package:app_flutter_quiz/services/firebase_storage_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -59,20 +60,18 @@ class QuestionPaperController extends GetxController {
 
   void navigateToQuiz(
       {required QuestionPaperModel paper, bool tryAgain = false}) {
-
     // ignore: no_leading_underscores_for_local_identifiers
     AuthController _authController = Get.find();
 
     if (_authController.isLoggedIn()) {
-
       if (tryAgain) {
+        print("tryAgain-true, already logged in");
         Get.back();
-// Get.offNamed(page);
+       // Get.offNamed(page);
       } else {
-        print("already logged in");
-        // Get.toNamed(page);
+        print("tryAgain-false, already logged in");
+        Get.toNamed(QuizScreen.routeName, arguments: paper);
       }
-
     } else {
       print("${paper.title} clicked - QP controller");
       _authController.showLoginAlertDialog();
