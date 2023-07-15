@@ -1,6 +1,7 @@
 import 'package:app_flutter_quiz/bindings/initial_bindings.dart';
 import 'package:app_flutter_quiz/controllers/theme_controller.dart';
 import 'package:app_flutter_quiz/firebase_options.dart';
+import 'package:app_flutter_quiz/question_uploader_screen.dart';
 import 'package:app_flutter_quiz/routes/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

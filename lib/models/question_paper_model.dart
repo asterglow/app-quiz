@@ -6,7 +6,7 @@ class QuestionPaperModel {
   String? imageUrl;
   String description;
   int timeSeconds;
-  List<Questions>? questions;
+  List<QuestionsModel>? questions;
   int questionsCount;
 
   QuestionPaperModel(
@@ -24,21 +24,23 @@ class QuestionPaperModel {
         imageUrl = json['image_url'] as String,
         description = json['Description'] as String,
         timeSeconds = json['time_seconds'],
-        questionsCount =0, //doesn't matter here
+        questionsCount = 0, //doesn't matter here
         questions = (json['questions'] as List)
-            .map((dynamic e) => Questions.fromJson(e as Map<String, dynamic>))
+            .map((dynamic e) =>
+                QuestionsModel.fromJson(e as Map<String, dynamic>))
             .toList();
 
-  QuestionPaperModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> json) //from Firebase
+  QuestionPaperModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> json) //from Firebase
       : id = json.id, //any format
-        title = json['title'] ,
-        imageUrl = json['image_link'] ,
-        description = json['description'] ,
+        title = json['title'],
+        imageUrl = json['image_link'],
+        description = json['description'],
         timeSeconds = json['time_seconds'],
         questionsCount = json['questions_count'] as int,
         questions = []; //not needed here , hence empty list
 
-        String timeMins() => "${(timeSeconds/60).ceil()} Mins";
+  String timeMins() => "${(timeSeconds / 60).ceil()} Mins";
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -52,24 +54,32 @@ class QuestionPaperModel {
   }
 }
 
-class Questions {
+class QuestionsModel {
   String id;
   String question;
-  List<Answers> answers;
+  List<AnswersModel> answers;
   String? correctAnswer;
 
-  Questions(
+  QuestionsModel(
       {required this.id,
       required this.question,
       required this.answers,
       this.correctAnswer});
 
-  Questions.fromJson(Map<String, dynamic> json)
+  QuestionsModel.fromJson(Map<String, dynamic> json)
       : id = json['id'] as String,
         question = json['question'] as String,
-        answers =
-            (json["answers"] as List).map((e) => Answers.fromJson(e)).toList(),
+        answers = (json["answers"] as List)
+            .map((e) => AnswersModel.fromJson(e))
+            .toList(),
         correctAnswer = json['correct_answer'] as String;
+
+  QuestionsModel.fromSnapshot(
+      QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
+      : id = snapshot.id,
+        question = snapshot['question'] as String,
+        answers = [],
+        correctAnswer = snapshot['correct_answer'] as String;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -81,15 +91,20 @@ class Questions {
   }
 }
 
-class Answers {
+class AnswersModel {
   String? identifier;
   String? answer;
 
-  Answers({this.identifier, this.answer});
+  AnswersModel({this.identifier, this.answer});
 
-  Answers.fromJson(Map<String, dynamic> json)
+  AnswersModel.fromJson(Map<String, dynamic> json)
       : identifier = json['identifier'] as String,
         answer = json['Answer'] as String;
+
+  AnswersModel.fromSnapshot(
+      QueryDocumentSnapshot<Map<String, dynamic>> ss)
+      : identifier = ss['identifier'] as String,
+        answer = ss['answer'] as String;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

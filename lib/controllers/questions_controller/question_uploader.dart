@@ -31,13 +31,14 @@ class QuestionUploader extends GetxController {
         .toList();
     // print(questionsInAssets);
     List<QuestionPaperModel> questionPapers = [];
+
     for (var paper in questionsInAssets) {
       String paperContentsString = await rootBundle.loadString(paper);
       questionPapers
           .add(QuestionPaperModel.fromJson(json.decode(paperContentsString)));
     }
     // print(paperContentsString);
-    // print(questionPapers[0].description);
+    // print(questionPapers[0].title);
     var batch = fireStore.batch();
 
     for (var paper in questionPapers) {

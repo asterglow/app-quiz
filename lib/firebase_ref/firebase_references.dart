@@ -10,7 +10,7 @@ DocumentReference questionRF({
   required String paperId,
   required String questionId,
 }) =>
-    questionPaperRF.doc(paperId).collection("questions").doc("questionId");
+    questionPaperRF.doc(paperId).collection("questions").doc(questionId);
 
 Reference get firebaseStorage =>
     FirebaseStorage.instance.ref(); //images and data
