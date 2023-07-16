@@ -59,6 +59,8 @@ class QuestionsModel {
   String question;
   List<AnswersModel> answers;
   String? correctAnswer;
+  String? selectedAnswer;
+  // String? hoverAnswer;
 
   QuestionsModel(
       {required this.id,

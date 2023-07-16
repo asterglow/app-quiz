@@ -10,9 +10,11 @@ class QuizController extends GetxController {
   final loadingStatus = LoadingStatus.loading.obs;
   late QuestionPaperModel questionPaperModel;
   final List<QuestionsModel> allQuestions = <QuestionsModel>[];
-  Rxn<QuestionsModel> currentQuestion = Rxn<QuestionsModel>();
+  Rxn<QuestionsModel> currentQuestion =
+      Rxn<QuestionsModel>(); //rxn gets updated ,getx
+  // Rxn<bool> mySelector = Rxn();
 
-  @override 
+  @override
   void onReady() {
     final _quizPaper = Get.arguments as QuestionPaperModel;
 
@@ -24,7 +26,7 @@ class QuizController extends GetxController {
 
   void loadData(QuestionPaperModel quizModel) async {
     questionPaperModel = quizModel;
-    loadingStatus.value=LoadingStatus.loading;
+    loadingStatus.value = LoadingStatus.loading;
     try {
       final QuerySnapshot<Map<String, dynamic>> quizQuery =
           await questionPaperRF.doc(quizModel.id).collection("questions").get();
@@ -53,20 +55,18 @@ class QuizController extends GetxController {
         _question.answers = answers;
 
         if (quizModel.questions != null && quizModel.questions!.isNotEmpty) {
-          
           allQuestions.assignAll(quizModel.questions!);
           // print("${allQuestions.length} total questions");
           // print("quizModel.questions[1] - ${quizModel.questions![1]}");
           // print("quizModel.questions[1].qn for ${quizModel.title} is - ${quizModel.questions![1].question}");
-          currentQuestion.value=quizModel.questions![0];
-          
-          loadingStatus.value=LoadingStatus.completed;
+          currentQuestion.value = quizModel.questions![0];
+
+          loadingStatus.value = LoadingStatus.completed;
         } else {
-          loadingStatus.value=LoadingStatus.error;
+          loadingStatus.value = LoadingStatus.error;
         }
       }
 
-      
       // print(questionPaperModel);
     } catch (e) {
       if (kDebugMode) {
@@ -75,4 +75,18 @@ class QuizController extends GetxController {
       }
     }
   }
+
+  void selectedAnswer(String? ans) {
+    currentQuestion.value!.selectedAnswer = ans;
+    update();
+  }
+
+  // void mySelectorToggle(){
+  //   mySelector.value=true;
+  // }
+
+  // void hoverAnswer(String? ans){
+  //   currentQuestion.value!.hoverAnswer=ans;
+  //   update();
+  // }
 }

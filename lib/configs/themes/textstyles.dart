@@ -16,3 +16,7 @@ const headerTextStyle = TextStyle(
   fontWeight: FontWeight.w700,
   color: onSurfaceTextColor,
 );
+const quizTextStyle = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w800,
+);

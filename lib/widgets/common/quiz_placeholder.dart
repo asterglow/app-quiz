@@ -31,19 +31,19 @@ class QuizPlaceholder extends StatelessWidget {
           );
         },
         children: [
-          // EasySeparatedColumn(
-          //   children: [
-          //     lineC,
-          //     lineC,
-          //     lineC,
-          //     lineC,
-          //   ],
-          //   separatorBuilder: (BuildContext context, int index) {
-          //     return const SizedBox(
-          //       height: 20,
-          //     );
-          //   },
-          // ),
+          EasySeparatedColumn(
+            separatorBuilder: (BuildContext context, int index) {
+              return const SizedBox(
+                height: 10,
+              );
+            },
+            children: [
+              lineC,
+              lineC,
+              lineC,
+              lineC,
+            ],
+          ),
           answerC,
           answerC,
           answerC,
