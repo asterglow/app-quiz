@@ -13,6 +13,9 @@ class QuizController extends GetxController {
   Rxn<QuestionsModel> currentQuestion =
       Rxn<QuestionsModel>(); //rxn gets updated ,getx
   // Rxn<bool> mySelector = Rxn();
+  final questionIndex = 0.obs;
+  bool get isNotFirstQuestion => questionIndex.value > 0;
+  bool get isLastQuestion => questionIndex.value >= allQuestions.length-1;
 
   @override
   void onReady() {
@@ -78,7 +81,7 @@ class QuizController extends GetxController {
 
   void selectedAnswer(String? ans) {
     currentQuestion.value!.selectedAnswer = ans;
-    update();
+    update(['quiz_screen_listview']); //which Getbuilder to update
   }
 
   // void mySelectorToggle(){
@@ -89,4 +92,22 @@ class QuizController extends GetxController {
   //   currentQuestion.value!.hoverAnswer=ans;
   //   update();
   // }
+
+  void nextQuestion(){
+    if (isLastQuestion){
+      return;
+    }else{
+      questionIndex.value++; 
+      currentQuestion.value=allQuestions[questionIndex.value];
+    }
+  }
+
+  void previousQuestion(){
+    if (!isNotFirstQuestion){
+      return;
+    }else{
+      questionIndex.value--; 
+      currentQuestion.value=allQuestions[questionIndex.value];
+    }
+  }
 }

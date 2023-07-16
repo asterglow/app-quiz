@@ -1,7 +1,6 @@
 import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 class MainButton extends StatelessWidget {
   const MainButton({
@@ -22,7 +21,7 @@ class MainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      type: MaterialType.transparency, //else it will block design changes 
+      type: MaterialType.transparency, //else it will block design changes
       child: SizedBox(
         height: 55,
         child: InkWell(
@@ -38,9 +37,11 @@ class MainButton extends StatelessWidget {
                   Center(
                     child: Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: onSurfaceTextColor,
+                        color: Get.isDarkMode
+                            ? onSurfaceTextColor
+                            : Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
