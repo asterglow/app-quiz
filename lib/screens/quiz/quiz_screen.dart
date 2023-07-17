@@ -3,14 +3,13 @@ import 'package:app_flutter_quiz/configs/themes/textstyles.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
 import 'package:app_flutter_quiz/controllers/questions_controller/quiz_controller.dart';
 import 'package:app_flutter_quiz/firebase_ref/loading_status.dart';
+import 'package:app_flutter_quiz/widgets/common/app_appbar.dart';
 import 'package:app_flutter_quiz/widgets/common/background_decoration.dart';
 import 'package:app_flutter_quiz/widgets/common/main_button.dart';
 import 'package:app_flutter_quiz/widgets/common/quiz_placeholder.dart';
 import 'package:app_flutter_quiz/widgets/content_area.dart';
 import 'package:app_flutter_quiz/widgets/quiz/answer_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class QuizScreen extends GetView<QuizController> {
@@ -21,6 +20,29 @@ class QuizScreen extends GetView<QuizController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppAppBar(
+        leading: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 4,
+          ),
+          decoration: const ShapeDecoration(
+            shape: StadiumBorder(
+                side: BorderSide(color: onSurfaceTextColor, width: 2)),
+          ),
+          child: Obx(
+            () => Text('${controller.time.value}'),
+          ),
+        ),
+        titleWidget: Obx(
+          () => Text(
+            "Question ${(controller.questionIndex.value + 1).toString().padLeft(2, "0")}", //.pads 0 if width of string is less than 2
+            style: appBarTS,
+          ),
+        ),
+        showActionIcon: true,
+      ),
       body: BackgroundDecoration(
         child: Obx(() => Column(
               children: [

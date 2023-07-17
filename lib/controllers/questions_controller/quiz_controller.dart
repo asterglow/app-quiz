@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app_flutter_quiz/firebase_ref/loading_status.dart';
 import 'package:app_flutter_quiz/models/question_paper_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +17,11 @@ class QuizController extends GetxController {
   // Rxn<bool> mySelector = Rxn();
   final questionIndex = 0.obs;
   bool get isNotFirstQuestion => questionIndex.value > 0;
-  bool get isLastQuestion => questionIndex.value >= allQuestions.length-1;
+  bool get isLastQuestion => questionIndex.value >= allQuestions.length - 1;
+
+  Timer? _timer;
+  int secsLeft = 1;
+  final time = '0.00'.obs;
 
   @override
   void onReady() {
@@ -59,10 +65,14 @@ class QuizController extends GetxController {
 
         if (quizModel.questions != null && quizModel.questions!.isNotEmpty) {
           allQuestions.assignAll(quizModel.questions!);
+          // if(kDebugMode){
           // print("${allQuestions.length} total questions");
           // print("quizModel.questions[1] - ${quizModel.questions![1]}");
           // print("quizModel.questions[1].qn for ${quizModel.title} is - ${quizModel.questions![1].question}");
+          // }
           currentQuestion.value = quizModel.questions![0];
+
+           _startTimer(quizModel.timeSeconds);
 
           loadingStatus.value = LoadingStatus.completed;
         } else {
@@ -93,21 +103,40 @@ class QuizController extends GetxController {
   //   update();
   // }
 
-  void nextQuestion(){
-    if (isLastQuestion){
+  void nextQuestion() {
+    if (isLastQuestion) {
       return;
-    }else{
-      questionIndex.value++; 
-      currentQuestion.value=allQuestions[questionIndex.value];
+    } else {
+      questionIndex.value++;
+      currentQuestion.value = allQuestions[questionIndex.value];
     }
   }
 
-  void previousQuestion(){
-    if (!isNotFirstQuestion){
+  void previousQuestion() {
+    if (!isNotFirstQuestion) {
       return;
-    }else{
-      questionIndex.value--; 
-      currentQuestion.value=allQuestions[questionIndex.value];
+    } else {
+      questionIndex.value--;
+      currentQuestion.value = allQuestions[questionIndex.value];
     }
   }
+
+  _startTimer(int secs) {
+    const duratn = Duration(seconds: 1);
+    secsLeft = secs;
+    Timer.periodic(duratn, (Timer timer) {
+      if (secsLeft == 0) {
+        timer.cancel();
+      } else {
+        int minsDisplay = (secsLeft / 60).floor();
+        int secsDisplay = secsLeft % 60;
+        time.value = minsDisplay.toString().padLeft(2, "0") +
+            ":" +
+            secsLeft.toString().padLeft(2, "0");
+            secsLeft--; //every 1 sec duratn
+      }
+    });
+  }
+
+  
 }

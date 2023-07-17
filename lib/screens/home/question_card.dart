@@ -25,7 +25,7 @@ class QuestionCard extends GetView<QuestionPaperController> {
       child: InkWell(
         onTap: () {
 
-          print("${model.title} clicked - Card");
+          // print("${model.title} clicked - Card");
           controller.navigateToQuiz(
             paper: model,
             tryAgain: false,

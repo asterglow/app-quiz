@@ -20,3 +20,9 @@ const quizTextStyle = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w800,
 );
+
+const appBarTS = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+  color: onSurfaceTextColor
+);

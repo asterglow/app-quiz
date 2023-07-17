@@ -65,15 +65,15 @@ class QuestionPaperController extends GetxController {
 
     if (_authController.isLoggedIn()) {
       if (tryAgain) {
-        print("tryAgain-true, already logged in");
+        // print("tryAgain-true, already logged in");
         Get.back();
        // Get.offNamed(page);
       } else {
-        print("tryAgain-false, already logged in");
+        // print("tryAgain-false, already logged in");
         Get.toNamed(QuizScreen.routeName, arguments: paper);
       }
     } else {
-      print("${paper.title} clicked - QP controller");
+      // print("${paper.title} clicked - QP controller");
       _authController.showLoginAlertDialog();
     }
   }

@@ -14,8 +14,7 @@ class BackgroundDecoration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned.fill(
-          //fill makes automatically zero
+        Positioned.fill(  //fill makes automatically zero
           child: Container(
             decoration: BoxDecoration(
               color: showGradient ? null : Theme.of(context).primaryColor,
@@ -26,7 +25,7 @@ class BackgroundDecoration extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(child: child)
+        Positioned.fill(child: SafeArea(child: child))
       ],
     );
   }
