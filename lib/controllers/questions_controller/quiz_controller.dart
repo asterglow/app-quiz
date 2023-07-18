@@ -27,7 +27,8 @@ class QuizController extends GetxController {
   void onReady() {
     final _quizPaper = Get.arguments as QuestionPaperModel;
 
-    print("${_quizPaper.title} clicked - Quiz Cntlr");
+    // print("${_quizPaper.title} clicked - Quiz Cntlr");
+    // print("onReady fetched...");
 
     loadData(_quizPaper);
     super.onReady();
@@ -62,8 +63,16 @@ class QuizController extends GetxController {
             .toList();
 
         _question.answers = answers;
+      }
+      // print(questionPaperModel);
+    } catch (e) {
+      if (kDebugMode) {
+        // doesnt print in production mode, only in development
+        print(e.toString());
+      }
+    } 
 
-        if (quizModel.questions != null && quizModel.questions!.isNotEmpty) {
+    if (quizModel.questions != null && quizModel.questions!.isNotEmpty) {
           allQuestions.assignAll(quizModel.questions!);
           // if(kDebugMode){
           // print("${allQuestions.length} total questions");
@@ -73,20 +82,12 @@ class QuizController extends GetxController {
           currentQuestion.value = quizModel.questions![0];
 
            _startTimer(quizModel.timeSeconds);
+          //  print("startTimer started..."); 
 
           loadingStatus.value = LoadingStatus.completed;
         } else {
           loadingStatus.value = LoadingStatus.error;
         }
-      }
-
-      // print(questionPaperModel);
-    } catch (e) {
-      if (kDebugMode) {
-        // doesnt print in production mode, only in development
-        print(e.toString());
-      }
-    }
   }
 
   void selectedAnswer(String? ans) {
@@ -132,7 +133,7 @@ class QuizController extends GetxController {
         int secsDisplay = secsLeft % 60;
         time.value = minsDisplay.toString().padLeft(2, "0") +
             ":" +
-            secsLeft.toString().padLeft(2, "0");
+            secsDisplay.toString().padLeft(2, "0");
             secsLeft--; //every 1 sec duratn
       }
     });

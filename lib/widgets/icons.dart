@@ -8,4 +8,6 @@ class AppIcons {
   static const IconData menuLeft = IconData(0xe805, fontFamily: fontfam);
 
   static const IconData peace = IconData(0xe806, fontFamily: fontfam);
+
+static const IconData menuRight = IconData(0xe804, fontFamily: fontfam);
 }

@@ -9,6 +9,7 @@ import 'package:app_flutter_quiz/widgets/common/main_button.dart';
 import 'package:app_flutter_quiz/widgets/common/quiz_placeholder.dart';
 import 'package:app_flutter_quiz/widgets/content_area.dart';
 import 'package:app_flutter_quiz/widgets/quiz/answer_card.dart';
+import 'package:app_flutter_quiz/widgets/timer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +33,10 @@ class QuizScreen extends GetView<QuizController> {
                 side: BorderSide(color: onSurfaceTextColor, width: 2)),
           ),
           child: Obx(
-            () => Text('${controller.time.value}'),
+            () => AppTimer(
+              color: onSurfaceTextColor,
+              time: controller.time.value,
+            ),
           ),
         ),
         titleWidget: Obx(
