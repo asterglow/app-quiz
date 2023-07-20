@@ -40,8 +40,8 @@ class AppRoutes {
               Get.put<QuizController>(QuizController()); //specified the type as well as we are calling update() by id in page GetBuilder
             })),
         GetPage(
-          name: QuizScoreScreen.routeName,
-          page: () => const QuizScoreScreen(),
+          name: ScoreScreen.routeName,
+          page: () => const ScoreScreen(),
         ),
       ];
 }

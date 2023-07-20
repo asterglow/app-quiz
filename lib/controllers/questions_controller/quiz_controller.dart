@@ -70,29 +70,37 @@ class QuizController extends GetxController {
         // doesnt print in production mode, only in development
         print(e.toString());
       }
-    } 
+    }
 
     if (quizModel.questions != null && quizModel.questions!.isNotEmpty) {
-          allQuestions.assignAll(quizModel.questions!);
-          // if(kDebugMode){
-          // print("${allQuestions.length} total questions");
-          // print("quizModel.questions[1] - ${quizModel.questions![1]}");
-          // print("quizModel.questions[1].qn for ${quizModel.title} is - ${quizModel.questions![1].question}");
-          // }
-          currentQuestion.value = quizModel.questions![0];
+      allQuestions.assignAll(quizModel.questions!);
+      // if(kDebugMode){
+      // print("${allQuestions.length} total questions");
+      // print("quizModel.questions[1] - ${quizModel.questions![1]}");
+      // print("quizModel.questions[1].qn for ${quizModel.title} is - ${quizModel.questions![1].question}");
+      // }
+      currentQuestion.value = quizModel.questions![0];
 
-           _startTimer(quizModel.timeSeconds);
-          //  print("startTimer started..."); 
+      _startTimer(quizModel.timeSeconds);
+      //  print("startTimer started...");
 
-          loadingStatus.value = LoadingStatus.completed;
-        } else {
-          loadingStatus.value = LoadingStatus.error;
-        }
+      loadingStatus.value = LoadingStatus.completed;
+    } else {
+      loadingStatus.value = LoadingStatus.error;
+    }
   }
 
   void selectedAnswer(String? ans) {
     currentQuestion.value!.selectedAnswer = ans;
     update(['quiz_screen_listview']); //which Getbuilder to update
+  }
+
+  String get completedQuiz {
+    final int noAnswered = allQuestions
+        .where((element) => element.selectedAnswer != null)
+        .toList()
+        .length;
+    return "$noAnswered out of ${allQuestions.length} attempted";
   }
 
   // void mySelectorToggle(){
@@ -134,10 +142,8 @@ class QuizController extends GetxController {
         time.value = minsDisplay.toString().padLeft(2, "0") +
             ":" +
             secsDisplay.toString().padLeft(2, "0");
-            secsLeft--; //every 1 sec duratn
+        secsLeft--; //every 1 sec duratn
       }
     });
   }
-
-  
 }
