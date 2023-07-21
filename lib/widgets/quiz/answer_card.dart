@@ -2,6 +2,12 @@ import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
 import 'package:flutter/material.dart';
 
+enum AnswerStatus{
+  answered,
+  notanswered,
+  correct,
+  wrong
+}
 
 class Answercard extends StatelessWidget {
   final String amswer;

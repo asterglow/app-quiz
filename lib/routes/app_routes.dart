@@ -5,9 +5,11 @@ import 'package:app_flutter_quiz/screens/home/home_screen.dart';
 import 'package:app_flutter_quiz/screens/intro/intro_screen.dart';
 import 'package:app_flutter_quiz/screens/login/login_screen.dart';
 import 'package:app_flutter_quiz/screens/quiz/quiz_screen.dart';
-import 'package:app_flutter_quiz/screens/score_screen.dart';
+import 'package:app_flutter_quiz/screens/score/attempts_screen.dart';
 import 'package:app_flutter_quiz/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
+
+import '../screens/score/results_screen.dart';
 
 class AppRoutes {
   static List<GetPage> routes() => [
@@ -40,8 +42,12 @@ class AppRoutes {
               Get.put<QuizController>(QuizController()); //specified the type as well as we are calling update() by id in page GetBuilder
             })),
         GetPage(
-          name: ScoreScreen.routeName,
-          page: () => const ScoreScreen(),
+          name: AttemptsScreen.routeName,
+          page: () => const AttemptsScreen(),
+        ),
+          GetPage(
+          name: ResultsScreen.routeName,
+          page: () => const ResultsScreen(),
         ),
       ];
 }

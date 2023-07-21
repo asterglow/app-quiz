@@ -13,7 +13,7 @@ import 'package:app_flutter_quiz/widgets/timer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../score_screen.dart';
+import '../score/attempts_screen.dart';
 
 class QuizScreen extends GetView<QuizController> {
   const QuizScreen({super.key});
@@ -143,7 +143,7 @@ class QuizScreen extends GetView<QuizController> {
                             child: MainButton(
                               onTap: () {
                                 controller.isLastQuestion
-                                    ? Get.toNamed(ScoreScreen.routeName)
+                                    ? Get.toNamed(AttemptsScreen.routeName)
                                     : controller.nextQuestion();
                               },
                               title: controller.isLastQuestion

@@ -1,6 +1,6 @@
 import 'package:app_flutter_quiz/configs/themes/textstyles.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
-import 'package:app_flutter_quiz/screens/score_screen.dart';
+import 'package:app_flutter_quiz/screens/score/attempts_screen.dart';
 import 'package:app_flutter_quiz/widgets/circle_button.dart';
 import 'package:app_flutter_quiz/widgets/icons.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +57,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Transform.translate(
                     offset: const Offset(5, 0),
                     child: AppCircleButton(
-                      onTap: onMenuActionTap?? ()=>Get.toNamed(ScoreScreen.routeName) ,
+                      onTap: onMenuActionTap?? ()=>Get.toNamed(AttemptsScreen.routeName) ,
                       child: const Icon(AppIcons.menuRight,
                       size: 20,
                       ),

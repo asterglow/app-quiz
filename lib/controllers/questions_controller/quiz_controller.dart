@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app_flutter_quiz/firebase_ref/loading_status.dart';
 import 'package:app_flutter_quiz/models/question_paper_model.dart';
+import 'package:app_flutter_quiz/screens/score/results_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class QuizController extends GetxController {
   Rxn<QuestionsModel> currentQuestion =
       Rxn<QuestionsModel>(); //rxn gets updated ,getx
   // Rxn<bool> mySelector = Rxn();
-  final questionIndex = 0.obs;
+  final RxInt questionIndex = 0.obs;
   bool get isNotFirstQuestion => questionIndex.value > 0;
   bool get isLastQuestion => questionIndex.value >= allQuestions.length - 1;
 
@@ -103,6 +104,14 @@ class QuizController extends GetxController {
     return "$noAnswered out of ${allQuestions.length} attempted";
   }
 
+  void jumpToQuestion(int index, {bool isGoBack = true}) {
+    questionIndex.value = index;
+    currentQuestion.value = allQuestions[index];
+    if(isGoBack == true){
+      Get.back();
+    }
+  }
+
   // void mySelectorToggle(){
   //   mySelector.value=true;
   // }
@@ -133,7 +142,7 @@ class QuizController extends GetxController {
   _startTimer(int secs) {
     const duratn = Duration(seconds: 1);
     secsLeft = secs;
-    Timer.periodic(duratn, (Timer timer) {
+    _timer = Timer.periodic(duratn, (Timer timer) {
       if (secsLeft == 0) {
         timer.cancel();
       } else {
@@ -145,5 +154,10 @@ class QuizController extends GetxController {
         secsLeft--; //every 1 sec duratn
       }
     });
+  }
+
+  void completeTest(){
+    _timer!.cancel();
+    Get.offAndToNamed(ResultsScreen.routeName);
   }
 }
