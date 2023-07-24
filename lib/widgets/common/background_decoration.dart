@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-class BackgroundDecoration extends StatelessWidget {
+class AppBackgroundDecoration extends StatelessWidget {
   final Widget child;
   final bool showGradient;
 
-  const BackgroundDecoration(
+  const AppBackgroundDecoration(
       {super.key, required this.child, this.showGradient = false});
 
   @override

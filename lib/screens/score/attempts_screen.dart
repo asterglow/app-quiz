@@ -21,9 +21,10 @@ class AttemptsScreen extends GetView<QuizController> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppAppBar(
-        title: controller.completedQuiz,
+        title:
+            "${controller.noAnswered} attempted out of ${controller.allQuestions.length}",
       ),
-      body: BackgroundDecoration(
+      body: AppBackgroundDecoration(
         child: Column(
           children: [
             Expanded(

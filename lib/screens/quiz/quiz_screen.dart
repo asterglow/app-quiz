@@ -49,7 +49,7 @@ class QuizScreen extends GetView<QuizController> {
         ),
         showActionIcon: true,
       ),
-      body: BackgroundDecoration(
+      body: AppBackgroundDecoration(
         child: Obx(() => Column(
               children: [
                 if (controller.loadingStatus.value == LoadingStatus.loading)

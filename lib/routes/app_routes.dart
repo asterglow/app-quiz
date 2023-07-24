@@ -9,6 +9,7 @@ import 'package:app_flutter_quiz/screens/score/attempts_screen.dart';
 import 'package:app_flutter_quiz/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
+import '../screens/score/check_answer_screen.dart';
 import '../screens/score/results_screen.dart';
 
 class AppRoutes {
@@ -36,18 +37,24 @@ class AppRoutes {
           page: () => const LoginScreen(),
         ),
         GetPage(
-            name: QuizScreen.routeName,
-            page: () => const QuizScreen(),
-            binding: BindingsBuilder(() {
-              Get.put<QuizController>(QuizController()); //specified the type as well as we are calling update() by id in page GetBuilder
-            })),
+          name: QuizScreen.routeName,
+          page: () => const QuizScreen(),
+          binding: BindingsBuilder(() {
+            Get.put<QuizController>(
+                QuizController()); //specified the type as well as we are calling update() by id in page GetBuilder
+          }),
+        ),
         GetPage(
           name: AttemptsScreen.routeName,
           page: () => const AttemptsScreen(),
         ),
-          GetPage(
+        GetPage(
           name: ResultsScreen.routeName,
           page: () => const ResultsScreen(),
+        ),
+        GetPage(
+          name: CheckAnswerScreen.routeName,
+          page: () => const CheckAnswerScreen(),
         ),
       ];
 }

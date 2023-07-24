@@ -6,7 +6,19 @@ extension ExtQuizController on QuizController {
       .toList()
       .length;
 
-      String get correctQuestions{
-        return "$correctQuestionsCount Correct out of ${allQuestions.length}";
-      }
+  String get correctQuestions {
+    return "$correctQuestionsCount Correct out of ${allQuestions.length}";
+  }
+
+  double get points {
+    return correctQuestionsCount - (noAnswered - correctQuestionsCount) / 4;
+  }
+
+  String get pointsCalc=>
+  "${correctQuestionsCount} - (0.25 * ${noAnswered - correctQuestionsCount}) =";
+
+void allScores(){
+  int wrongCount=noAnswered - correctQuestionsCount;
+  double timeScore= (questionPaperModel.timeSeconds - secsLeft)/100;
+}
 }

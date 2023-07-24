@@ -96,18 +96,15 @@ class QuizController extends GetxController {
     update(['quiz_screen_listview']); //which Getbuilder to update
   }
 
-  String get completedQuiz {
-    final int noAnswered = allQuestions
-        .where((element) => element.selectedAnswer != null)
-        .toList()
-        .length;
-    return "$noAnswered out of ${allQuestions.length} attempted";
-  }
+  int get noAnswered => allQuestions
+      .where((element) => element.selectedAnswer != null)
+      .toList()
+      .length;
 
   void jumpToQuestion(int index, {bool isGoBack = true}) {
     questionIndex.value = index;
     currentQuestion.value = allQuestions[index];
-    if(isGoBack == true){
+    if (isGoBack == true) {
       Get.back();
     }
   }
@@ -156,7 +153,7 @@ class QuizController extends GetxController {
     });
   }
 
-  void completeTest(){
+  void completeTest() {
     _timer!.cancel();
     Get.offAndToNamed(ResultsScreen.routeName);
   }

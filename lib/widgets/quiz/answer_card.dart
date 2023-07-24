@@ -2,12 +2,7 @@ import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
 import 'package:flutter/material.dart';
 
-enum AnswerStatus{
-  answered,
-  notanswered,
-  correct,
-  wrong
-}
+enum AnswerStatus { answered, notanswered, correct, wrong }
 
 class Answercard extends StatelessWidget {
   final String amswer;
@@ -39,7 +34,7 @@ class Answercard extends StatelessWidget {
       // },
       // onHover: onHover,
       child: Ink(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
           borderRadius: UIParameters.cardBorderRadius,
           color:
@@ -49,11 +44,29 @@ class Answercard extends StatelessWidget {
           ),
         ),
         child: Text(
-            amswer,
-            style: TextStyle(
-                color: isSelected ? onSurfaceTextColor : null,
-                fontWeight: FontWeight.bold),
-          ),
+          amswer,
+          style: TextStyle(
+              color: isSelected ? onSurfaceTextColor : null,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
+}
+
+class CorrectAnswer extends StatelessWidget {
+  const CorrectAnswer({super.key, required this.answer});
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Ink(
+      child: Text(
+        answer,
+        style: const TextStyle(
+          color: correctAnsColor,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
