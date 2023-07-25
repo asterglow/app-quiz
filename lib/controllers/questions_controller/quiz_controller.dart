@@ -1,9 +1,13 @@
 import 'dart:async';
 
+import 'package:app_flutter_quiz/controllers/auth_controller.dart';
+import 'package:app_flutter_quiz/controllers/questions_controller/question_paper_controller.dart';
 import 'package:app_flutter_quiz/firebase_ref/loading_status.dart';
 import 'package:app_flutter_quiz/models/question_paper_model.dart';
+import 'package:app_flutter_quiz/screens/home/home_screen.dart';
 import 'package:app_flutter_quiz/screens/score/results_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
@@ -93,7 +97,7 @@ class QuizController extends GetxController {
 
   void selectedAnswer(String? ans) {
     currentQuestion.value!.selectedAnswer = ans;
-    update(['quiz_screen_listview']); //which Getbuilder to update
+    update(['quiz_screen_listview', 'check_answer_list']); //which Getbuilder to update
   }
 
   int get noAnswered => allQuestions
@@ -156,5 +160,17 @@ class QuizController extends GetxController {
   void completeTest() {
     _timer!.cancel();
     Get.offAndToNamed(ResultsScreen.routeName);
+  }
+
+  void tryAgain() {
+    Get.find<QuestionPaperController>().navigateToQuiz(
+      paper: questionPaperModel,
+      tryAgain: true,
+    );
+  }
+
+  void navigateToHome(){
+    _timer!.cancel();
+    Get.offNamedUntil(HomeScreen.routeName, (route) => false);
   }
 }

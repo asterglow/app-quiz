@@ -58,17 +58,21 @@ class CheckAnswerScreen extends GetView<QuizController> {
 
                                     if (_correctAnswer == _selectedAnswer &&
                                         _answer.identifier == _selectedAnswer) {
-                                          return Container();
-                                    } else if (_selectedAnswer == null) {
-                                      return CorrectAnswer(answer: _answerText);
+                                          return CorrectAnswer(answer: _answerText);
+
+                                    // } else if (_selectedAnswer == null) {
+                                    //   return NotAnswered (answer: _answerText);  //from answer card
+
                                     } else if (_correctAnswer !=
                                             _selectedAnswer &&
                                         _answer.identifier == _selectedAnswer) {
-                                          return Container();
+                                          return WrongAnswer(answer: _answerText,);
+
                                     } else if (_correctAnswer ==
                                         _answer.identifier) {
-                                          return Container();
+                                          return CorrectAnswer(answer: _answerText);
                                         }
+
                                     return Answercard(
                                       amswer: _answerText,
                                       onTap: () {},

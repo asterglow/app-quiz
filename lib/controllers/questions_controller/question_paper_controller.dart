@@ -67,7 +67,11 @@ class QuestionPaperController extends GetxController {
       if (tryAgain) {
         // print("tryAgain-true, already logged in");
         Get.back();
-       // Get.offNamed(page);
+        Get.toNamed(
+          QuizScreen.routeName,
+          arguments: paper,
+          preventDuplicates: false,
+        ); 
       } else {
         // print("tryAgain-false, already logged in");
         Get.toNamed(QuizScreen.routeName, arguments: paper);

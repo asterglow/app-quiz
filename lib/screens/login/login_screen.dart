@@ -39,7 +39,7 @@ class LoginScreen extends GetView<AuthController> {
                 ),
               ),
             ),
-            MainButton(
+            AppMainButton(
               onTap: () {
                 // print("Main Button in Login Screen pressed");
                 controller.signInGoogle();

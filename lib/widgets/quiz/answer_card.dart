@@ -61,10 +61,62 @@ class CorrectAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Ink(
+      decoration: BoxDecoration(
+        borderRadius: UIParameters.cardBorderRadius,
+        color: correctAnsColor.withOpacity(0.1),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Text(
         answer,
         style: const TextStyle(
           color: correctAnsColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+class WrongAnswer extends StatelessWidget {
+  const WrongAnswer({super.key, required this.answer});
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Ink(
+      
+      decoration: BoxDecoration(
+        borderRadius: UIParameters.cardBorderRadius,
+        color: correctAnsColor.withOpacity(0.1),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      child: Text(
+        answer,
+        style: const TextStyle(
+          color: wrongAnsColor,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+}
+
+class NotAnswered extends StatelessWidget {
+  const NotAnswered({super.key, required this.answer});
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Ink(
+      decoration: BoxDecoration(
+        borderRadius: UIParameters.cardBorderRadius,
+        color: correctAnsColor.withOpacity(0.1),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      child: Text(
+        answer,
+        style: const TextStyle(
+          color: notAnsColor,
           fontWeight: FontWeight.bold,
         ),
       ),

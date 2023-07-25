@@ -1,10 +1,12 @@
 import 'package:app_flutter_quiz/configs/themes/textstyles.dart';
+import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
 import 'package:app_flutter_quiz/controllers/questions_controller/extension_quiz_controller.dart';
 import 'package:app_flutter_quiz/controllers/questions_controller/quiz_controller.dart';
 import 'package:app_flutter_quiz/screens/score/attempts_card.dart';
 import 'package:app_flutter_quiz/screens/score/check_answer_screen.dart';
 import 'package:app_flutter_quiz/widgets/common/app_appbar.dart';
 import 'package:app_flutter_quiz/widgets/common/background_decoration.dart';
+import 'package:app_flutter_quiz/widgets/common/main_button.dart';
 import 'package:app_flutter_quiz/widgets/content_area.dart';
 import 'package:app_flutter_quiz/widgets/quiz/answer_card.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class ResultsScreen extends GetView<QuizController> {
     Color _textColor =
         Get.isDarkMode ? Colors.white : Theme.of(context).primaryColor;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: AppBackgroundDecoration(
         child: Column(
           children: [
@@ -64,7 +67,7 @@ class ResultsScreen extends GetView<QuizController> {
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: ((Get.width * 0.75)/50).floor(),
+                            crossAxisCount: ((Get.width * 0.75) / 50).floor(),
                             childAspectRatio: 1,
                             crossAxisSpacing: 8,
                             mainAxisSpacing: 8),
@@ -74,6 +77,7 @@ class ResultsScreen extends GetView<QuizController> {
                           AnswerStatus _status = AnswerStatus.notanswered;
                           final _selectedAnswer = _question.selectedAnswer;
                           final _correctAnswer = _question.correctAnswer;
+
                           if (_selectedAnswer == _correctAnswer) {
                             _status = AnswerStatus.correct;
                           } else if (_selectedAnswer == null) {
@@ -81,7 +85,7 @@ class ResultsScreen extends GetView<QuizController> {
                           } else {
                             _status = AnswerStatus.wrong;
                           }
-                        return AttemptsCard(
+                          return AttemptsCard(
                             index: index,
                             status: _status,
                             onTap: () {
@@ -91,10 +95,39 @@ class ResultsScreen extends GetView<QuizController> {
                               );
                               Get.toNamed(CheckAnswerScreen.routeName);
                             },
-                          );  
+                          );
                         },
                       ),
                     ),
+                    ColoredBox(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      child: Padding(
+                        padding: UIParameters.screenPadding,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: AppMainButton(
+                                onTap: () {
+                                  controller.tryAgain();
+                                },
+                                color: Theme.of(context).cardColor,
+                                title: 'Try Again',
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: AppMainButton(
+                                onTap: () {
+                                  controller.saveTestResult();
+                                },
+                                color: Theme.of(context).cardColor,
+                                title: 'Back Home',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ), 
                   ],
                 ),
               ),

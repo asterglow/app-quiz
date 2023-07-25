@@ -76,7 +76,7 @@ class AttemptsScreen extends GetView<QuizController> {
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Padding(
                         padding: UIParameters.screenPadding,
-                        child: MainButton(
+                        child: AppMainButton(
                           onTap: () {
                             controller.completeTest();
                           },

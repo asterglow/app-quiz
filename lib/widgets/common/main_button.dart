@@ -2,8 +2,8 @@ import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MainButton extends StatelessWidget {
-  const MainButton({
+class AppMainButton extends StatelessWidget {
+  const AppMainButton({
     super.key,
     this.title = '',
     required this.onTap,

@@ -123,7 +123,7 @@ class QuizScreen extends GetView<QuizController> {
                           child: SizedBox(
                             width: 55,
                             height: 55,
-                            child: MainButton(
+                            child: AppMainButton(
                               onTap: () {
                                 controller.previousQuestion();
                               },
@@ -140,7 +140,7 @@ class QuizScreen extends GetView<QuizController> {
                           child: Visibility(
                             visible: controller.loadingStatus.value ==
                                 LoadingStatus.completed,
-                            child: MainButton(
+                            child: AppMainButton(
                               onTap: () {
                                 controller.isLastQuestion
                                     ? Get.toNamed(AttemptsScreen.routeName)
