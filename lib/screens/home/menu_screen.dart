@@ -1,6 +1,9 @@
 import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
+import 'package:app_flutter_quiz/configs/themes/textstyles.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
 import 'package:app_flutter_quiz/controllers/zoom_drawer_controller.dart';
+import 'package:app_flutter_quiz/screens/contact/contact_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -35,50 +38,77 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  right: MediaQuery.of(context).size.width * 0.3,
+                  right: MediaQuery.of(context).size.width * 0.05,
                 ),
                 child: Column(
                   children: [
+                    Obx(() => controller.user.value == null
+                        ? Container()
+                        : controller.user.value!.photoURL == null ||
+                                controller.user.value!.photoURL!.isEmpty
+                            ? Image.asset("assets/images/app_splash_logo.png")
+                            : CircleAvatar(
+                                radius: 60,
+                                backgroundImage: NetworkImage(
+                                    controller.user.value!.photoURL!),
+                              )),
                     Obx(
                       () => controller.user.value == null
                           ? const SizedBox()
-                          : Text(
-                              controller.user.value!.displayName ?? "",
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 18,
-                                color: onSurfaceTextColor,
-                              ),
-                            ),
+                          : Text(controller.user.value!.displayName ?? "",
+                              style: headerTextStyle),
+                    ),
+                    Obx(
+                      () => controller.user.value == null
+                          ? const SizedBox()
+                          : Text(controller.user.value!.email ?? "",
+                              style: detailTextStyle),
                     ),
                     const Spacer(
                       flex: 1,
                     ),
                     _DrawerButton(
-                      icon: Icons.web,
-                      label: "Website",
-                      onPressed: () => controller.getWebsite(),
+                      icontype: Icons.currency_rupee,
+                      txt: "Upgrade to Premium",
+                      onTap: () {},
+                      arrow: true,
                     ),
+                    const SizedBox(height: 15),
                     _DrawerButton(
-                      icon: Icons.add_a_photo,
-                      label: "Instagram",
-                      onPressed: () => controller.getInsta(),
+                      icontype: Icons.history,
+                      txt: "My Test History",
+                      onTap: () => controller.getWebsite(),
+                      arrow: true,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: _DrawerButton(
-                        icon: Icons.email,
-                        label: "Email",
-                        onPressed: () => controller.getEmail(),
-                      ),
+                    const SizedBox(height: 15),
+                    _DrawerButton(
+                      icontype: Icons.add_a_photo,
+                      txt: "Instagram",
+                      onTap: () => controller.getInsta(),
+                      arrow: true,
+                    ),
+                    const SizedBox(height: 15),
+                    _DrawerButton(
+                      icontype: Icons.email,
+                      txt: "Email & Support",
+                      onTap: () => controller.getEmail(),
+                      arrow: true,
                     ),
                     const Spacer(
                       flex: 4,
                     ),
                     _DrawerButton(
-                      icon: Icons.logout,
-                      label: "Log out",
-                      onPressed: () => controller.signOut(),
+                      icontype: Icons.email,
+                      txt: "Contact Us",
+                      onTap: () => Get.toNamed(ContactScreen.routeName),
+                      arrow: true,
+                    ),
+                    const SizedBox(height: 15),
+                    _DrawerButton(
+                      icontype: Icons.logout,
+                      txt: "Log out",
+                      onTap: () => controller.signOut(),
+                      arrow: false,
                     ),
                   ],
                 ),
@@ -90,26 +120,57 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
 }
 
 class _DrawerButton extends StatelessWidget {
-  const _DrawerButton({
-    // super.key,
-    required this.icon,
-    required this.label,
-    this.onPressed,
-  });
+  const _DrawerButton(
+      {super.key,
+      required this.txt,
+      required this.arrow,
+      required this.icontype,
+      this.onTap});
 
-  final IconData icon;
-  final String label;
-  final VoidCallback? onPressed;
+  final String txt;
+  final bool arrow;
+  final IconData icontype;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: onPressed,
-      icon: Icon(
-        icon,
-        size: 25,
+    return SafeArea(
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(9),
+          height: Get.height * 0.05,
+          width: Get.width * 0.85,
+          decoration:  BoxDecoration(
+            color: UIParameters.isDarkMode()? Colors.white : Colors.blueGrey,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(
+                icontype,
+                size: 25,
+                color: UIParameters.isDarkMode()? Colors.pink : Colors.blueGrey,
+                shadows: const [Shadow(blurRadius: 1)],
+              ),
+              SizedBox(
+                // width: 50,
+                child:
+                    Text(txt, textAlign: TextAlign.start, style: quizTextStyle),
+              ),
+              arrow
+                  ? const Icon(
+                      Icons.touch_app,
+                      color: Colors.white,
+                    )
+                  : Container(),
+            ],
+          ),
+        ),
       ),
-      label: Text(label),
     );
   }
 }

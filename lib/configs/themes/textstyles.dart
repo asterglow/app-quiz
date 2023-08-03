@@ -11,7 +11,7 @@ TextStyle quizTitleTextStyle(context) => TextStyle(
       fontWeight: FontWeight.bold,
     );
 
-const detailTextStyle = TextStyle(fontSize: 12);
+const detailTextStyle = TextStyle(fontSize: 14);
 const headerTextStyle = TextStyle(
   fontSize: 22,
   fontWeight: FontWeight.w700,

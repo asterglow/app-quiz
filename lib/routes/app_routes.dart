@@ -9,6 +9,7 @@ import 'package:app_flutter_quiz/screens/score/attempts_screen.dart';
 import 'package:app_flutter_quiz/screens/splash/splash_screen.dart';
 import 'package:get/get.dart';
 
+import '../screens/contact/contact_screen.dart';
 import '../screens/score/check_answer_screen.dart';
 import '../screens/score/results_screen.dart';
 
@@ -55,6 +56,10 @@ class AppRoutes {
         GetPage(
           name: CheckAnswerScreen.routeName,
           page: () => const CheckAnswerScreen(),
+        ),
+        GetPage(
+          name: ContactScreen.routeName,
+          page: () => const ContactScreen(),
         ),
       ];
 }

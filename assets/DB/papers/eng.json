@@ -1,121 +1,122 @@
 {
-    "id": "Maths001",
-    "title": "ଗଣିତ",
+    "id": "eng001",
+    "title": "English",
     "image_url": "",
-    "Description": "Basic Maths Multiple Choice Questions (MCQ) to practice basic Maths quiz answers",
+    "Description": "Basic physics Multiple Choice Questions (MCQ) to practice basic physics quiz answers",
     "time_seconds": 900,
+    
     "questions": [
         {
-            "id": "ppr003q001",
-            "question": "Jenna has 82 apples. She gives Sam 28 apples. How many apples does Jenna have now?",
+            "id": "ppr001q001",
+            "question": "Which one of the following is a good conductor of electricity?",
             "answers": [
                 {
                     "identifier": "A",
-                    "Answer": "45"
+                    "Answer": "Glass"
                 },
                 {
                     "identifier": "B",
-                    "Answer": "108"
+                    "Answer": "Human body"
                 },
                 {
                     "identifier": "C",
-                    "Answer": "54"
+                    "Answer": "Ebonite"
                 },
                 {
                     "identifier": "D",
-                    "Answer": "37"
-                }
-            ],
-            "correct_answer": "C"
-        },
-        {
-            "id": "ppr003q002",
-            "question": "Max and Billy went to a farm! Max collected 18 eggs and Billy collected 29 eggs. How many eggs did they collect in total.",
-            "answers": [
-                {
-                    "identifier": "A",
-                    "Answer": "74"
-                },
-                {
-                    "identifier": "B",
-                    "Answer": "22"
-                },
-                {
-                    "identifier": "C",
-                    "Answer": "80"
-                },
-                {
-                    "identifier": "D",
-                    "Answer": "47"
-                }
-            ],
-            "correct_answer": "D"
-        },
-        {
-            "id": "ppr003q003",
-            "question": "what is 2/10 +15/100 equal?",
-            "answers": [
-                {
-                    "identifier": "A",
-                    "Answer": "17"
-                },
-                {
-                    "identifier": "B",
-                    "Answer": "35/100"
-                },
-                {
-                    "identifier": "C",
-                    "Answer": "30/100"
-                },
-                {
-                    "identifier": "D",
-                    "Answer": "17/100"
+                    "Answer": "Shellac"
                 }
             ],
             "correct_answer": "B"
         },
         {
-            "id": "ppr003q004",
-            "question": "How many times greater is 2,340 than 234?",
+            "id": "ppr001q002",
+            "question": "Which one of the following has maximum energy?",
             "answers": [
                 {
                     "identifier": "A",
-                    "Answer": "20 times"
+                    "Answer": "Yellow light"
                 },
                 {
                     "identifier": "B",
-                    "Answer": "100 times"
+                    "Answer": "Green light"
                 },
                 {
                     "identifier": "C",
-                    "Answer": "10 times"
+                    "Answer": "Violet light"
                 },
                 {
                     "identifier": "D",
-                    "Answer": "1 time"
+                    "Answer": "Red light"
                 }
             ],
             "correct_answer": "C"
         },
         {
-            "id": "ppr003q005",
-            "question": "How many sides does a quadrilateral have?",
+            "id": "ppr001q003",
+            "question": "Which law is involved in the act of cleaning a carpet by beating it with a stick?",
             "answers": [
                 {
                     "identifier": "A",
-                    "Answer": "5"
+                    "Answer": "First law of motion"
                 },
                 {
                     "identifier": "B",
-                    "Answer": "3"
+                    "Answer": "Second law of motion"
                 },
                 {
                     "identifier": "C",
-                    "Answer": "2"
+                    "Answer": "Law of conservation of mass"
                 },
                 {
                     "identifier": "D",
-                    "Answer": "4"
+                    "Answer": "Law of conservation of energy"
+                }
+            ],
+            "correct_answer": "C"
+        },
+        {
+            "id": "ppr001q004",
+            "question": "which of the following is a unit of eletric current:",
+            "answers": [
+                {
+                    "identifier": "A",
+                    "Answer": "ohm"
+                },
+                {
+                    "identifier": "B",
+                    "Answer": "volt"
+                },
+                {
+                    "identifier": "C",
+                    "Answer": "watt"
+                },
+                {
+                    "identifier": "D",
+                    "Answer": "amp"
+                }
+            ],
+            "correct_answer": "D"
+        },
+        {
+            "id": "ppr001q005",
+            "question": "When an object is in motion, it's ................... must change.?",
+            "answers": [
+                {
+                    "identifier": "A",
+                    "Answer": "Shapen"
+                },
+                {
+                    "identifier": "B",
+                    "Answer": "Size"
+                },
+                {
+                    "identifier": "C",
+                    "Answer": "Acceleration"
+                },
+                {
+                    "identifier": "D",
+                    "Answer": "Position"
                 }
             ],
             "correct_answer": "D"

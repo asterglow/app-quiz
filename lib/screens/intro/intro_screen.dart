@@ -25,13 +25,13 @@ class IntroScreen extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              const Text(
-                "quiz app to help lerning. Choose from subjects and no of questions",
+              Text(
+                "ଏଈ କୁଈଜ ଆପ୍  Choose from subjects and no of questions",
                 style: TextStyle(
                   fontSize: 18,
                   color: onSurfaceTextColor,
                   fontWeight: FontWeight.bold,
-                ),
+                ).copyWith(fontFamily: 'Kalinga'),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(

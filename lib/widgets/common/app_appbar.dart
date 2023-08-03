@@ -59,7 +59,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
                     child: AppCircleButton(
                       onTap: onMenuActionTap?? ()=>Get.toNamed(AttemptsScreen.routeName) ,
                       child: const Icon(AppIcons.menuRight,
-                      size: 20,
+                      size: 30,
                       ),
                     ),
                   ),

@@ -93,7 +93,16 @@ flutter:
   fonts:
     - family: AppIcons
       fonts:
-        - asset: assets/icons/AppIcons.ttf
+        - asset: assets/fonts/AppIcons.ttf
+    - family: NotoSerifOdia
+      fonts:
+        - asset: assets/fonts/NotoSerifOdia.ttf
+    - family: Kalinga
+      fonts:
+        - asset: assets/fonts/Kalinga.ttf        
+        - asset: assets/fonts/Kalinga_Bold.ttf
+          weight: 700
+          
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

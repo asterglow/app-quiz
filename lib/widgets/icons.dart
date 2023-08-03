@@ -9,5 +9,7 @@ class AppIcons {
 
   static const IconData peace = IconData(0xe806, fontFamily: fontfam);
 
+  static const IconData highFive = IconData(0xf04c5, fontFamily: 'MaterialIcons'); 
+
 static const IconData menuRight = IconData(0xe804, fontFamily: fontfam);
 }

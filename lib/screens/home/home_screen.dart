@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../../widgets/content_area.dart';
 import '../../widgets/icons.dart';
 
@@ -34,7 +35,7 @@ class HomeScreen extends GetView<AppZoomDrawerController> {
             angle: 0.0,
             style: DrawerStyle.defaultStyle,
             menuBackgroundColor: Colors.white.withOpacity(0.5),
-            slideWidth: MediaQuery.of(context).size.width*0.85,
+            slideWidth: MediaQuery.of(context).size.width * 0.85,
             menuScreen: const HomeMenuScreen(),
             mainScreen: Container(
               // color: Colors.blueAccent,
@@ -59,19 +60,35 @@ class HomeScreen extends GetView<AppZoomDrawerController> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Row(
                               children: [
-                                const Icon(AppIcons.peace),
-                                Text(
-                                  "hello",
-                                  style: detailTextStyle.copyWith(
-                                      color: onSurfaceTextColor),
-                                )
+                                const Icon(AppIcons.highFive),
+                                Builder(
+                                  builder: (_) {
+                                    final AuthController _auth = Get.find();
+                                    final user = _auth.getUser();
+                                    String _label = '  ନମସ୍କାର';
+                                    if (user != null) {
+                                      List<String> splitName =user.displayName!.split(" ");
+                                      _label = '  Hello ${splitName[0]}';
+                                    }
+                                    return Text(
+                                      _label,
+                                      style: detailTextStyle.copyWith(
+                                          color: onSurfaceTextColor),
+                                    );
+                                  },
+                                ),
                               ],
                             ),
                           ),
-                          const Text(
-                            "What are you learning today?",
-                            style: headerTextStyle,
+                          Row(
+                            children: [
+                              Text(
+                            "ଆଜି କୋଉ ବିଷୟରେ ପଢିବା?",
+                            style: headerTextStyle.copyWith(fontWeight: FontWeight.w400)
+                                // headerTextStyle.copyWith(fontFamily: 'Kalinga'),
                           ),
+                            ],
+                          )
                         ],
                       ),
                     ),
