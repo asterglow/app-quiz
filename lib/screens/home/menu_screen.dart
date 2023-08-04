@@ -1,6 +1,7 @@
 import 'package:app_flutter_quiz/configs/themes/app_colors.dart';
 import 'package:app_flutter_quiz/configs/themes/textstyles.dart';
 import 'package:app_flutter_quiz/configs/themes/ui_parameters.dart';
+import 'package:app_flutter_quiz/controllers/theme_controller.dart';
 import 'package:app_flutter_quiz/controllers/zoom_drawer_controller.dart';
 import 'package:app_flutter_quiz/screens/contact/contact_screen.dart';
 
@@ -10,7 +11,9 @@ import 'package:get/get.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class HomeMenuScreen extends GetView<AppZoomDrawerController> {
-  const HomeMenuScreen({super.key});
+  HomeMenuScreen({super.key});
+
+  final themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +52,7 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                                 controller.user.value!.photoURL!.isEmpty
                             ? Image.asset("assets/images/app_splash_logo.png")
                             : CircleAvatar(
-                                radius: 60,
+                                radius: 50,
                                 backgroundImage: NetworkImage(
                                     controller.user.value!.photoURL!),
                               )),
@@ -57,13 +60,13 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                       () => controller.user.value == null
                           ? const SizedBox()
                           : Text(controller.user.value!.displayName ?? "",
-                              style: headerTextStyle),
+                              style: headerTextStyle.copyWith(fontSize: 18)),
                     ),
                     Obx(
                       () => controller.user.value == null
                           ? const SizedBox()
                           : Text(controller.user.value!.email ?? "",
-                              style: detailTextStyle),
+                              style: detailTextStyle.copyWith(fontSize: 14,fontStyle: FontStyle.italic)),
                     ),
                     const Spacer(
                       flex: 1,
@@ -89,12 +92,17 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                           size: 30,
                           color: Colors.white,
                         ),
-                        const Text(
-                          'Theme',
-                          style: quizTextStyle,
+                        const Spacer(flex: 1,),
+                        Ink(
+                          width: 60,
+                          child: const Text(
+                            'Theme',
+                            style: quizTextStyle,
+                            textAlign: TextAlign.left,
+                          ),
                         ),
                         LiteRollingSwitch(
-                          value: true,
+                          value: themeController.isSavedDarkTheme(),
                           width: Get.width * 0.35,
                           animationDuration: const Duration(milliseconds: 150),
                           textOff: 'Light   ',
@@ -107,9 +115,10 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                           iconOn: Icons.nightlight_round_sharp,
                           textSize: 14,
                           onChanged: (bool thm) {
-                            Get.changeThemeMode(thm
-                                ? ThemeMode.dark
-                                : ThemeMode.light);
+                            // Get.changeThemeMode(thm
+                            //     ? ThemeMode.dark
+                            //     : ThemeMode.light);
+                            ThemeController().toggleTheme();
                           },
                           onTap: () {},
                           onDoubleTap: () {},
@@ -117,12 +126,12 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                         ),
                       ],
                     ),
-                    MaterialButton(
-                      color: Colors.white,
-                      onPressed: () => Get.changeThemeMode(
-                          Get.isDarkMode ? ThemeMode.dark : ThemeMode.light),
-                      child: Text("ThemeTog"),
-                    ),
+                    // MaterialButton(
+                    //   color: Colors.white,
+                    //   onPressed: () { 
+                    //     ThemeController().toggleTheme();},
+                    //   child: Text("ThemeTog"),
+                    // ),
                     const SizedBox(height: 15),
                     Row(
                       children: [
@@ -131,13 +140,19 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                           size: 30,
                           color: Colors.white,
                         ),
-                        const Text(
-                          'Sound',
-                          style: quizTextStyle,
+                        const Spacer(flex: 1),
+                        Ink(
+                          width: 60,
+                          child: const Text(
+                            'Sound',
+                            style: quizTextStyle,
+                            textAlign: TextAlign.left,
+                          ),
                         ),
                         LiteRollingSwitch(
                           value: true,
-                          animationDuration: Duration(milliseconds: 150),
+                          width: Get.width * 0.35,
+                          animationDuration: const Duration(milliseconds: 150),
                           textOn: '    On',
                           textOff: '   Muted',
                           textOnColor: Colors.white,
