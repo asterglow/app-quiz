@@ -49,6 +49,7 @@ dependencies:
   flutter_svg: ^2.0.5
   shimmer: ^3.0.0
   easy_separator: ^1.0.1
+  lite_rolling_switch: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -94,9 +95,9 @@ flutter:
     - family: AppIcons
       fonts:
         - asset: assets/fonts/AppIcons.ttf
-    - family: NotoSerifOdia
-      fonts:
-        - asset: assets/fonts/NotoSerifOdia.ttf
+    # - family: NotoSerifOdia
+    #   fonts:
+    #     - asset: assets/fonts/NotoSerifOdia.ttf
     - family: Kalinga
       fonts:
         - asset: assets/fonts/Kalinga.ttf        

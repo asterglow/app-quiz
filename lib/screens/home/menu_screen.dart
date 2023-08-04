@@ -7,6 +7,7 @@ import 'package:app_flutter_quiz/screens/contact/contact_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class HomeMenuScreen extends GetView<AppZoomDrawerController> {
   const HomeMenuScreen({super.key});
@@ -77,31 +78,99 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                     _DrawerButton(
                       icontype: Icons.history,
                       txt: "My Test History",
-                      onTap: () => controller.getWebsite(),
+                      // onTap: () => controller.getWebsite(),
                       arrow: true,
                     ),
                     const SizedBox(height: 15),
-                    _DrawerButton(
-                      icontype: Icons.add_a_photo,
-                      txt: "Instagram",
-                      onTap: () => controller.getInsta(),
-                      arrow: true,
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.settings,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                        const Text(
+                          'Theme',
+                          style: quizTextStyle,
+                        ),
+                        LiteRollingSwitch(
+                          value: true,
+                          width: Get.width * 0.35,
+                          animationDuration: const Duration(milliseconds: 150),
+                          textOff: 'Light   ',
+                          textOn: '    Dark',
+                          textOnColor: Colors.white60,
+                          textOffColor: Colors.white,
+                          colorOff: Colors.orange,
+                          colorOn: Colors.black54,
+                          iconOff: Icons.sunny,
+                          iconOn: Icons.nightlight_round_sharp,
+                          textSize: 14,
+                          onChanged: (bool thm) {
+                            Get.changeThemeMode(thm
+                                ? ThemeMode.dark
+                                : ThemeMode.light);
+                          },
+                          onTap: () {},
+                          onDoubleTap: () {},
+                          onSwipe: () {},
+                        ),
+                      ],
+                    ),
+                    MaterialButton(
+                      color: Colors.white,
+                      onPressed: () => Get.changeThemeMode(
+                          Get.isDarkMode ? ThemeMode.dark : ThemeMode.light),
+                      child: Text("ThemeTog"),
                     ),
                     const SizedBox(height: 15),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.settings,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                        const Text(
+                          'Sound',
+                          style: quizTextStyle,
+                        ),
+                        LiteRollingSwitch(
+                          value: true,
+                          animationDuration: Duration(milliseconds: 150),
+                          textOn: '    On',
+                          textOff: '   Muted',
+                          textOnColor: Colors.white,
+                          textOffColor: Colors.white,
+                          colorOff: Colors.redAccent,
+                          colorOn: Colors.green,
+                          iconOn: Icons.alarm_off_sharp,
+                          iconOff: Icons.done_sharp,
+                          textSize: 14,
+                          onChanged: (bool snd) {
+                            // print('sound $snd');
+                          },
+                          onTap: () {},
+                          onDoubleTap: () {},
+                          onSwipe: () {},
+                        ),
+                      ],
+                    ),
+                    const Spacer(
+                      flex: 12,
+                    ),
                     _DrawerButton(
                       icontype: Icons.email,
                       txt: "Email & Support",
-                      onTap: () => controller.getEmail(),
-                      arrow: true,
+                      // onTap: () => controller.getEmail(),
+                      arrow: false,
                     ),
-                    const Spacer(
-                      flex: 4,
-                    ),
+                    const SizedBox(height: 15),
                     _DrawerButton(
                       icontype: Icons.email,
-                      txt: "Contact Us",
-                      onTap: () => Get.toNamed(ContactScreen.routeName),
-                      arrow: true,
+                      txt: "About Us",
+                      // onTap: () => Get.toNamed(ContactScreen.routeName),
+                      arrow: false,
                     ),
                     const SizedBox(height: 15),
                     _DrawerButton(
@@ -141,8 +210,8 @@ class _DrawerButton extends StatelessWidget {
           padding: const EdgeInsets.all(9),
           height: Get.height * 0.05,
           width: Get.width * 0.85,
-          decoration:  BoxDecoration(
-            color: UIParameters.isDarkMode()? Colors.white : Colors.blueGrey,
+          decoration: BoxDecoration(
+            color: UIParameters.isDarkMode() ? Colors.white : Colors.blueGrey,
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
@@ -153,7 +222,9 @@ class _DrawerButton extends StatelessWidget {
               Icon(
                 icontype,
                 size: 25,
-                color: UIParameters.isDarkMode()? Colors.pink : Colors.blueGrey,
+                color: UIParameters.isDarkMode()
+                    ? menuIconColorDark
+                    : menuIconColorLight,
                 shadows: const [Shadow(blurRadius: 1)],
               ),
               SizedBox(
@@ -162,9 +233,11 @@ class _DrawerButton extends StatelessWidget {
                     Text(txt, textAlign: TextAlign.start, style: quizTextStyle),
               ),
               arrow
-                  ? const Icon(
-                      Icons.touch_app,
-                      color: Colors.white,
+                  ? Icon(
+                      Icons.forward,
+                      color: UIParameters.isDarkMode()
+                          ? menuIconColorDark
+                          : menuIconColorLight,
                     )
                   : Container(),
             ],

@@ -13,7 +13,7 @@ class IntroScreen extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(gradient: mainGradient()),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.2),
+          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -26,7 +26,7 @@ class IntroScreen extends StatelessWidget {
                 height: 40,
               ),
               Text(
-                "ଏଈ କୁଈଜ ଆପ୍  Choose from subjects and no of questions",
+                "QuizShala to prepare for Adarsh Vidyalaya Entrance Tests. Choose a quiz subject and check the concepts for each question after submitting the answers.\n\nକୁଈଜଶାଳା ଆପ୍ ରେ OAVS Entrance Test ର ପ୍ରତି ବିଷୟ ପାଇଁ ଅଲଗା MCQ ପରୀକ୍ଷା ଅଛି| ବିଷୟ ବାଛି କି ପରୀକ୍ଷା ଦିଅନ୍ତୁ ଏବଂ ପରୀକ୍ଷା ଫଳ ରେ ପ୍ରତି ପ୍ରଶ୍ନ ର ମୂଳ ତଥ୍ୟ ତା ପଢି ପାରିବେ",
                 style: TextStyle(
                   fontSize: 18,
                   color: onSurfaceTextColor,
