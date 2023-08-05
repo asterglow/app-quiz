@@ -65,7 +65,7 @@ class HomeScreen extends GetView<AppZoomDrawerController> {
                                   builder: (_) {
                                     final AuthController _auth = Get.find();
                                     final user = _auth.getUser();
-                                    String _label = '  ନମସ୍କାର';
+                                    String _label = '  ନମସ୍କାର 🙏';
                                     if (user != null) {
                                       List<String> splitName =user.displayName!.split(" ");
                                       _label = '  Hello ${splitName[0]}';

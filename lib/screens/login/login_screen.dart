@@ -24,14 +24,14 @@ class LoginScreen extends GetView<AuthController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/app_splash_logo.png",
+              "assets/images/logo.png",
               width: 200,
               height: 200,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 60),
               child: Text(
-                "Quiz app. Use it for learning various subjects",
+                "Quizshala App - OAVS Entrance\nକୁଈଜଶାଳା ଆପ୍ - OAVS Entrance",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: onSurfaceTextColor,

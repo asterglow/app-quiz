@@ -6,6 +6,7 @@ import 'package:app_flutter_quiz/controllers/zoom_drawer_controller.dart';
 import 'package:app_flutter_quiz/screens/contact/contact_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
@@ -42,12 +43,16 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  right: MediaQuery.of(context).size.width * 0.05,
-                ),
+                    right: MediaQuery.of(context).size.width * 0.05, top: 50),
                 child: Column(
                   children: [
                     Obx(() => controller.user.value == null
-                        ? Container()
+                        ? _DrawerButton(
+                            icontype: Icons.door_front_door_outlined,
+                            txt: "Select Quiz to Login",
+                            onTap: () => controller.toggleDrawer(),
+                            arrow: true,
+                          )
                         : controller.user.value!.photoURL == null ||
                                 controller.user.value!.photoURL!.isEmpty
                             ? Image.asset("assets/images/app_splash_logo.png")
@@ -66,7 +71,8 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                       () => controller.user.value == null
                           ? const SizedBox()
                           : Text(controller.user.value!.email ?? "",
-                              style: detailTextStyle.copyWith(fontSize: 14,fontStyle: FontStyle.italic)),
+                              style: detailTextStyle.copyWith(
+                                  fontSize: 14, fontStyle: FontStyle.italic)),
                     ),
                     const Spacer(
                       flex: 1,
@@ -76,7 +82,14 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                       txt: "Upgrade to Premium",
                       onTap: () {},
                       arrow: true,
-                    ),
+                    )
+                        .animate()
+                        .shake(
+                            delay: const Duration(milliseconds: 2500),
+                            duration: const Duration(milliseconds: 200000))
+                        .shimmer(
+                            delay: const Duration(milliseconds: 2500),
+                            duration: const Duration(seconds: 5)),
                     const SizedBox(height: 15),
                     _DrawerButton(
                       icontype: Icons.history,
@@ -92,7 +105,9 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                           size: 30,
                           color: Colors.white,
                         ),
-                        const Spacer(flex: 1,),
+                        const Spacer(
+                          flex: 1,
+                        ),
                         Ink(
                           width: 60,
                           child: const Text(
@@ -128,7 +143,7 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                     ),
                     // MaterialButton(
                     //   color: Colors.white,
-                    //   onPressed: () { 
+                    //   onPressed: () {
                     //     ThemeController().toggleTheme();},
                     //   child: Text("ThemeTog"),
                     // ),
@@ -188,11 +203,15 @@ class HomeMenuScreen extends GetView<AppZoomDrawerController> {
                       arrow: false,
                     ),
                     const SizedBox(height: 15),
-                    _DrawerButton(
-                      icontype: Icons.logout,
-                      txt: "Log out",
-                      onTap: () => controller.signOut(),
-                      arrow: false,
+                    Obx(
+                      () => controller.user.value == null
+                          ? Container()
+                          : _DrawerButton(
+                              icontype: Icons.logout,
+                              txt: "Log out",
+                              onTap: () => controller.signOut(),
+                              arrow: false,
+                            ),
                     ),
                   ],
                 ),
@@ -244,8 +263,12 @@ class _DrawerButton extends StatelessWidget {
               ),
               SizedBox(
                 // width: 50,
-                child:
-                    Text(txt, textAlign: TextAlign.start, style: quizTextStyle),
+                child: Text(txt,
+                    textAlign: TextAlign.start,
+                    style: quizTextStyle.copyWith(
+                        color: UIParameters.isDarkMode()
+                            ? Colors.blueGrey
+                            : Colors.white)),
               ),
               arrow
                   ? Icon(

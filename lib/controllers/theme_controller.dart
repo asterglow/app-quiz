@@ -26,23 +26,23 @@ class ThemeController extends GetxController{
   ThemeData get lightTheme => _lightTheme;
 
   ThemeMode getTheme(){
-    print(isSavedDarkTheme());
+    // print(isSavedDarkTheme());
     return isSavedDarkTheme() ? ThemeMode.dark :ThemeMode.light;
   }
 
   bool isSavedDarkTheme(){
-    print('${_getStorage.read(storageKey)}, isSavedDarkTheme');
+    // print('${_getStorage.read(storageKey)}, isSavedDarkTheme');
     return _getStorage.read(storageKey)?? true;
   }
 
   void saveTheme(bool isDarkMode){
     _getStorage.write(storageKey, isDarkMode);
-    print("savedtheme, ${isSavedDarkTheme()}");
+    // print("savedtheme, ${isSavedDarkTheme()}");
   }
 
   void toggleTheme(){
     Get.changeThemeMode(isSavedDarkTheme()? ThemeMode.light:ThemeMode.dark) ;
     saveTheme(!isSavedDarkTheme());
-    print('toggled theme, ${isSavedDarkTheme()}');
+    // print('toggled theme, ${isSavedDarkTheme()}');
   }
 }
